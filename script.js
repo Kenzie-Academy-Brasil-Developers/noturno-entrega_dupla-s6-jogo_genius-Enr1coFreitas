@@ -1,16 +1,89 @@
 // Elementos com as cores
-const azul = document.getElementById('azul');
-const amarelo = document.getElementById('amarelo');
-const verde = document.getElementById('verde');
-const vermelho = document.getElementById('vermelho');
+const azul = document.getElementById('1');
+const amarelo = document.getElementById('2');
+const verde = document.getElementById('3');
+const vermelho = document.getElementById('4');
 const botaoInicio = document.getElementById('novoJogo')
-let placar = 1;
-let cor = [];
+let placar = 0;
+let cor = [1,3];
+}
+//
+azul.addEventListener('click')
+//inicio real
+
+
+//inicio jogo e mostra placar
+function novojogo(){
+    alert('1 rodada' + ' ' + 'seu placar é' + ' ' + placar);
+    botaoInicio.addEventListener('click', () =>{placar++;numeroAleatoria(placar)})
+   }
+   //funcao executa
+
+    //if click em qualCor = true
+    //score +1
+    //if click Qual cor = false
+    //score = 0 game over
+    
+}
+
+
+
+//decide qual cor é cada const e anima
+function qualCor(element){
+    if(element === 1) {
+        return azul;// .style...verificar
+    }else if(element === 2) {
+        return amarelo;
+    }else if (element === 3) {
+        return verde;
+    }else if (element === 4) {
+        return vermelho;
+    } 
+}
+
+ //Gera aleatoriamente os valores de cor
+function numeroAleatoria(placar){
+    
+    if(placar > 0){
+        for(let index = 1;index <= placar;index++){ 
+            let numero = Math.random(1,4)
+            numero = Math.floor(numero)
+            cor.push(numero)
+            
+        }
+        cor.forEach(element => {qualCor(element)});
+}
+}
+//funcao que le o array cor
+function genius(cor,placar){
+    for(let index = placar;index < placar;index++){
+        let numeroBotao = cor[index];
+        const botao = document.getElementById(`${numeroBotao}`);
+        //(botao.addEventListener('click',{placar++;numeroAleatoria(placar)}
+     
+        
+    }
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 //criar pagina inicial esta incomleto não deu tempo de seguir  a demo
-
+criarModal()
 function criarModal(){
     const main = document.querySelector('main')
     const popUp = document.createElement('div')
@@ -34,47 +107,3 @@ function criarModal(){
 
     const button = document.createElement('button')
     button.setAttribute('id','popUp_button')
-}
-criarModal()
-//inicio real
-
-
-//inicio jogo e mostra placar
-function novojogo(){
-    alert('1 rodada' + ' ' + 'seu placar é' + ' ' + placar);
-    botaoInicio.addEventListener('click', () =>{placar++})
-   }
-
-
-//decide qual cor é cada const
-function qualCor(cor){
-    if(cor === 1) {
-        return azul;
-    }else if(cor === 2) {
-        return amarelo;
-    }else if (cor === 3) {
-        return verde;
-    }else if (cor === 4) {
-        return azul;
-    } 
-}
-
-// Gera aleatoriamente os valores de cor
-//function corAleatoria(){
- //   Math.random(1,4);
-    
-
-//}
-//funcao que le o array cor
-f//unction corAtual(cor){
-   // cor.forEach(//anima o css aqui dentro)
-//}
-
-//funcao executa
-function genius(){
-    //if click em qualCor = true
-    //score +1
-    //if click Qual cor = false
-    //score = 0 game over
-    
-}
