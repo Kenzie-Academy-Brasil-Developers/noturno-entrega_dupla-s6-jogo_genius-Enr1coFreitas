@@ -1,23 +1,62 @@
+function criarModal(){
+    const main = document.querySelector("main");
+    const popUp = document.createElement('div');
+    popUp.setAttribute('id', 'popUp');
+    popUp.classList.add('show');
+    main.appendChild(popUp);
+
+    const popUpTitle = document.createElement('h2');
+    popUpTitle.setAttribute('id', 'popUp_title');
+    popUpTitle.innerText = 'JOGO GENIUS';
+    popUp.appendChild(popUpTitle);
+
+    const form = document.createElement('form');
+    form.setAttribute('id', 'popUp_form');
+
+    const input = document.createElement('input');
+    input.setAttribute('id', 'input_name');
+
+    const label = document.createElement('label');
+    label.htmlFor = 'input_name';
+    label.innerText = 'Insira seu nome aqui';
+
+    const button = document.createElement('button');
+    button.setAttribute('id', 'popUp_button');
+    button.innerText = 'INICIAR O JOGO';
+
+    form.appendChild(label);
+    form.appendChild(input);
+    form.appendChild(button);
+    popUp.appendChild(form);
+}
+
 function criaTabuleiro(input){
     const main = document.getElementById("main")
     const container = document.createElement("section")
-    container.classList.add("tabuleiro")
+    container.setAttribute("id", "conteinerGlobal")
     container.innerHTML = `
-        <div id = "3" class = "botao"></div>
-        <div id = "2" class = "botao></div>
-        <div id = "4" class = "botao"></div>
-        <div id = "1" class = "botao"></div>
+        <div id = "3" class = "botao botao--green"></div>
+        <div id = "2" class = "botao botao--yellow></div>
+        <div id = "4" class = "botao botao--red"></div>
+        <div id = "1" class = "botao botao--blue"></div>
         <div class="infos">${input}</div>
     `
     main.appendChild(container)
 }
+;
+const botaoInicio = document.getElementById('novoJogo')
+function novojogo(){
+    window.alert('Bem vindo');// + placar
+    botaoInicio.addEventListener('click', () =>{criaTabuleiro()})
+    
+}
 
-// Elementos com as cores
+//Elementos com as cores
 const azul = document.getElementById('1');
 const amarelo = document.getElementById('2');
 const verde = document.getElementById('3');
 const vermelho = document.getElementById('4');
-const botaoInicio = document.getElementById('novoJogo')
+
 let placar = 0;
 let cor = [];
 let clicks = [];
@@ -29,7 +68,7 @@ let clicks = [];
 //inicio jogo e mostra placar
 function novojogo(){
     alert('1 rodada' + ' ' + 'seu placar é' + ' ' + placar);
-    botaoInicio.addEventListener('click', () =>{placar++;numeroAleatoria(placar)})
+    botaoInicio.addEventListener('click', () =>{placar++;numeroAleatoria(placar++)})
    }
    //funcao executa
 
@@ -82,7 +121,7 @@ function numeroAleatoria(placar){
         
     }
 }
-*/ 
+*/
 const caixaCores = document.getElementById('conteinerGlobal');
 caixaCores.addEventListener('click',(event) =>{
     jogoUsuario(event)

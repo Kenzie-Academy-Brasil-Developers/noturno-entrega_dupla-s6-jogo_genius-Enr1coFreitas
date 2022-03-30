@@ -4,7 +4,8 @@
     --color-yellow: #b2b000;
     --color-blue: #0000b2;
     --font-color-popUp: #f0e8e1;
-    --font-color-popUp-Title: rgb(175, 205, 206)
+    --font-color-popUp-Title: rgb(175, 205, 206);
+    --modal-color: rgb(53, 62, 63);
 }
 
 section .tabuleiro{
@@ -22,23 +23,70 @@ section .tabuleiro div .botao{
     width: 46%;
     margin: 5px;
 }
-section .tabuleiro div.botao--green{
+section.tabuleiro div.botao--green{
     background-color: var(--color-green);
     border-radius:  100% 0 0 0 ;
 }
-section .tabuleiro div.botao--yellow{
+section.tabuleiro div.botao--yellow{
     background-color: var(--color-yellow);
     border-radius: 0 100% 0 0 ;
 }
-section .tabuleiro div.botao--blue{
+section.tabuleiro div.botao--blue{
     background-color: var(--color-blue);
     border-radius: 0 0 100% 0 ;
 }
-section .tabuleiro div.botao--red{
+section.tabuleiro div.botao--red{
     background-color: var(--color-red);
     border-radius: 0 0 0 100% ;
 }
-section .tabuleiro div.botao--green{
+section.tabuleiro div.infos{
     background-color: var(--color-green);
     border-radius:  100% 0 0 0 ;
+}
+.infos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+.show{
+    height: 75vh;
+    width: 75vw;
+    background-color: var(--modal-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#popUp_title {
+    text-align: center;
+    font-size: 30px;
+    color: var(--font-color-popUp-Title);
+}
+#popUp_form {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+label {
+    font-size: 20px;
+    color: var(--font-color-popUp)
+}
+#input_name {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+}
+#popUp_button{
+    width: 125px;
+    height: 30px;
+    font-weight: bold;
+    background-color: cadetblue;
+    color: var(--font-color-popUp);
+}
+#popUp_button:hover{
+    background-color: var(--font-color-popUp-Title);
 }
