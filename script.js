@@ -1,3 +1,17 @@
+function criaTabuleiro(input){
+    const main = document.getElementById("main")
+    const container = document.createElement("section")
+    container.classList.add("tabuleiro")
+    container.innerHTML = `
+        <div id = "3" class = "botao"></div>
+        <div id = "2" class = "botao></div>
+        <div id = "4" class = "botao"></div>
+        <div id = "1" class = "botao"></div>
+        <div class="infos">${input}</div>
+    `
+    main.appendChild(container)
+}
+
 // Elementos com as cores
 const azul = document.getElementById('1');
 const amarelo = document.getElementById('2');
@@ -59,7 +73,7 @@ function numeroAleatoria(placar){
 }
 }
 //funcao que le o array cor
-function genius(cor,placar){
+/* function genius(cor,placar){
     for(let index = placar;index < placar;index++){
         let numeroBotao = cor[index];
         const botao = document.getElementById(`${numeroBotao}`);
@@ -68,7 +82,7 @@ function genius(cor,placar){
         
     }
 }
-// 
+*/ 
 const caixaCores = document.getElementById('conteinerGlobal');
 caixaCores.addEventListener('click',(event) =>{
     jogoUsuario(event)
