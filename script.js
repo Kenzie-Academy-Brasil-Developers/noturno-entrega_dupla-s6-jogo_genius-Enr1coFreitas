@@ -6,9 +6,9 @@ const vermelho = document.getElementById('4');
 const botaoInicio = document.getElementById('novoJogo')
 let placar = 0;
 let cor = [];
-
+let clicks = [];
 //
-azul.addEventListener('click')
+
 //inicio real
 
 
@@ -24,19 +24,23 @@ function novojogo(){
     //if click Qual cor = false
     //score = 0 game over
     
-}
+
 
 
 
 //decide qual cor é cada const e anima
 function qualCor(element){
     if(element === 1) {
-        return azul;// .style...verificar
+        azul.classList.add('opacidade')
+        return azul;// .style.<< modificar o estila ja nessa função
     }else if(element === 2) {
+        amarelo.classList.add('opacidade')
         return amarelo;
     }else if (element === 3) {
+        verde.classList.add('opacidade')
         return verde;
     }else if (element === 4) {
+        vermelho.classList.add('opacidade')
         return vermelho;
     } 
 }
@@ -59,51 +63,30 @@ function genius(cor,placar){
     for(let index = placar;index < placar;index++){
         let numeroBotao = cor[index];
         const botao = document.getElementById(`${numeroBotao}`);
-        //(botao.addEventListener('click',{placar++;numeroAleatoria(placar)}
+        botao.addEventListener('click' ())
      
         
     }
+}
+// 
+const caixaCores = document.getElementById('conteinerGlobal');
+caixaCores.addEventListener('click',(event) =>{
+    jogoUsuario(event)
+})
+
+function jogoUsuario(event){
     
-  
+    let idCor = event.target.id
+    clicks.push(idCor)
+    for(let index = 0;index <cor.length;index++){
+    if(clicks[index] === cor[index]){
+        Window.alert('voce passou')
+        placar++
+    }else{
+        Window.alert('voce perdeu!')
+        placar = 0
+        cor = [];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//criar pagina inicial esta incomleto não deu tempo de seguir  a demo
-criarModal()
-function criarModal(){
-    const main = document.querySelector('main')
-    const popUp = document.createElement('div')
-    popUp.setAttribute('id','popUp')
-    popUp.classList.add('show')
-    main.appendChild(popUp)
-    const popUpTitulo = document.createElement('h2')
-    popUpTitulo.setAttribute('id','popUp_title')
-    popUpTitulo.innerText = 'GENIUS'
-    popUp.appendChild(popUpTitulo)
-
-    const form = document.createElement('form')
-    form.setAttribute('id','popUp_form')
-
-    const input = document.createElement('input')
-    input.id = 'input_name'
-
-    const label = document.createElement('label')
-    label.htmlFor = 'input_name';
-    label.innerText = 'Insira seu nome'
-
-    const button = document.createElement('button')
-    button.setAttribute('id','popUp_button')
+    }
+}
+}
