@@ -5,8 +5,8 @@ const verde = document.getElementById('3');
 const vermelho = document.getElementById('4');
 const botaoInicio = document.getElementById('novoJogo')
 let placar = 0;
-let cor = [1,3];
-}
+let cor = [];
+
 //
 azul.addEventListener('click')
 //inicio real
