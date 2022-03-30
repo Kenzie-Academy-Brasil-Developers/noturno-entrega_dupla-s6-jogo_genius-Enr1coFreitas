@@ -1,0 +1,44 @@
+:root{
+    --color-green: #00b100;
+    --color-red: #b20000;
+    --color-yellow: #b2b000;
+    --color-blue: #0000b2;
+    --font-color-popUp: #f0e8e1;
+    --font-color-popUp-Title: rgb(175, 205, 206)
+}
+
+section .tabuleiro{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-color: #f0e8e1;
+    border-radius: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+section .tabuleiro div .botao{
+    border: solid 1px;
+    width: 46%;
+    margin: 5px;
+}
+section .tabuleiro div.botao--green{
+    background-color: var(--color-green);
+    border-radius:  100% 0 0 0 ;
+}
+section .tabuleiro div.botao--yellow{
+    background-color: var(--color-yellow);
+    border-radius: 0 100% 0 0 ;
+}
+section .tabuleiro div.botao--blue{
+    background-color: var(--color-blue);
+    border-radius: 0 0 100% 0 ;
+}
+section .tabuleiro div.botao--red{
+    background-color: var(--color-red);
+    border-radius: 0 0 0 100% ;
+}
+section .tabuleiro div.botao--green{
+    background-color: var(--color-green);
+    border-radius:  100% 0 0 0 ;
+}
