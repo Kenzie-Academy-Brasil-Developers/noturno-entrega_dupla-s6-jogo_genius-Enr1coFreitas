@@ -39,7 +39,7 @@ function criarModal() {
 
     const button = document.createElement('button')
     button.setAttribute('id', 'popUp_button')
-    button.innerText = 'Iniciar o jogo!';
+    button.innerText = 'INICIAR O JOGO';
 
     form.appendChild(label)
     form.appendChild(input)
@@ -50,8 +50,8 @@ function criarModal() {
 criarModal()
 
 const button = document.getElementById('popUp_button')
-button.addEventListener('click', (e) => {
-    e.preventDefault()
+button.addEventListener('click', (event) => {
+    event.preventDefault()
     
     const popUp = document.getElementById('popUp');
     const input = document.getElementById('input_name').value
