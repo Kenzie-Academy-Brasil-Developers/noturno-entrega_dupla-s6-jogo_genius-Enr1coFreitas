@@ -29,6 +29,24 @@ function criarModal(){
     form.appendChild(button);
     popUp.appendChild(form);
 }
+criarModal()
+ const button = document.getElementById('popUp_button');
+    button.addEventListener('click',(e) =>{
+     e.preventDefault()
+     const clique = e.target.innerText
+
+     if(clique === 'INICIAR O JOGO'){
+         const popUp = document.getElementById('popUp');
+         const input = document.getElementById('input_name').value
+         if(input === ''){
+             console.log('Input vazio')
+         }else{
+             popUp.classList.add('hide')
+             popUp.classList.remove('show')
+             criaTabuleiro(input)
+         }
+     }
+ })
 
 function criaTabuleiro(input){
     const main = document.getElementById("main")
@@ -44,19 +62,16 @@ function criaTabuleiro(input){
     main.appendChild(container)
 }
 ;
-const botaoInicio = document.getElementById('novoJogo')
-function novojogo(){
-    window.alert('Bem vindo');// + placar
-    botaoInicio.addEventListener('click', () =>{criaTabuleiro()})
-    
-}
+
+
 
 //Elementos com as cores
 const azul = document.getElementById('1');
 const amarelo = document.getElementById('2');
 const verde = document.getElementById('3');
 const vermelho = document.getElementById('4');
-
+//botao que inicia o codigo
+const botaoInicio = document.getElementById('novoJogo')
 let placar = 0;
 let cor = [];
 let clicks = [];
@@ -68,20 +83,28 @@ let clicks = [];
 //inicio jogo e mostra placar
 function novojogo(){
     alert('1 rodada' + ' ' + 'seu placar é' + ' ' + placar);
-    botaoInicio.addEventListener('click', () =>{placar++;numeroAleatoria(placar++)})
+    placar++
+    botaoInicio.addEventListener('click', () =>{corAleatoria(placar)}) 
    }
-   //funcao executa
+   novojogo()
+//Gera aleatoriamente os valores de cor
 
-    //if click em qualCor = true
-    //score +1
-    //if click Qual cor = false
-    //score = 0 game over
+function corAleatoria(placar){
     
-
-
-
+    if(placar > 0){
+        for(let index = 1;index <= placar;index++){ 
+            let numero = Math.floor(Math.random(1,4) * placar);//Math.random(1,4)
+            //numero = Math.floor(numero)
+            
+            cor.push(numero)
+            
+        }
+        cor.forEach(element => {qualCor(element)});
+}
+}
 
 //decide qual cor é cada const e anima
+
 function qualCor(element){
     if(element === 1) {
         azul.classList.add('opacidade')
@@ -98,19 +121,7 @@ function qualCor(element){
     } 
 }
 
- //Gera aleatoriamente os valores de cor
-function numeroAleatoria(placar){
-    
-    if(placar > 0){
-        for(let index = 1;index <= placar;index++){ 
-            let numero = Math.random(1,4)
-            numero = Math.floor(numero)
-            cor.push(numero)
-            
-        }
-        cor.forEach(element => {qualCor(element)});
-}
-}
+ 
 //funcao que le o array cor
 /* function genius(cor,placar){
     for(let index = placar;index < placar;index++){
@@ -122,11 +133,14 @@ function numeroAleatoria(placar){
     }
 }
 */
+
+
 const caixaCores = document.getElementById('conteinerGlobal');
 caixaCores.addEventListener('click',(event) =>{
     jogoUsuario(event)
 })
 
+//se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
     
     let idCor = event.target.id
@@ -143,3 +157,4 @@ function jogoUsuario(event){
     }
 }
 }
+
