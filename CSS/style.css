@@ -1,55 +1,126 @@
 :root{
-    --color-green: #00b100;
-    --color-red: #b20000;
-    --color-yellow: #b2b000;
-    --color-blue: #0000b2;
-    --font-color-popUp: #f0e8e1;
-    --font-color-popUp-Title: rgb(175, 205, 206);
-    --modal-color: rgb(53, 62, 63);
+    --color-green: #00B100;
+    --color-red: #B20000;
+    --color-yellow: #B2B000;
+    --color-blue: #0000B2; 
+    --font-color-popUp: #ffffff;
+    --font-color-popUp-title: rgb(255, 255, 255);
+    --modal-color: rgb(122, 131, 0);
 }
 
-section .tabuleiro{
+@keyframes animacaoGreen{
+    50%{
+        background-color: #00CC00;
+        transform: scale(1.05);
+        box-shadow: 0px 5px 50px 5px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+
+@keyframes animacaoYellow{
+    50%{
+        background-color: #CCC000;
+        transform: scale(1.05);
+        box-shadow: 0px 5px 50px 5px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+@keyframes animacaoBlue{
+    50%{
+        background-color: #0000CC;
+        transform: scale(1.05);
+        box-shadow: 0px 5px 50px 5px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+@keyframes animacaoRed{
+    50%{
+        background-color: #CC0000;
+        transform: scale(1.05);
+        box-shadow: 0px 5px 50px 5px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+.animacaogreen{
+    animation-name: animacaoGreen;
+    animation-duration: 1s;
+}
+
+.animacaored{
+    animation-name: animacaoRed;
+    animation-duration: 1s;
+}
+
+.animacaoblue{
+    animation-name: animacaoBlue;
+    animation-duration: 1s;
+}
+
+.animacaoyellow{
+    animation-name: animacaoYellow;
+    animation-duration: 1s;
+}
+
+main {
+    background-color: var(--modal-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+section.tabuleiro {
     position: relative;
-    width: 300px;
+    width: 330px;
     height: 300px;
-    background-color: #f0e8e1;
+    background-color: #F0E8E1;
     border-radius: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-section .tabuleiro div .botao{
+
+section.tabuleiro div.botao{
     border: solid 1px;
     width: 46%;
     margin: 5px;
 }
+
 section.tabuleiro div.botao--green{
     background-color: var(--color-green);
-    border-radius:  100% 0 0 0 ;
+    border-radius: 100% 0 0 0;
 }
+
 section.tabuleiro div.botao--yellow{
     background-color: var(--color-yellow);
-    border-radius: 0 100% 0 0 ;
+    border-radius: 0 100% 0 0;
 }
+
 section.tabuleiro div.botao--blue{
     background-color: var(--color-blue);
-    border-radius: 0 0 100% 0 ;
+    border-radius: 0 0 100% 0;
 }
+
 section.tabuleiro div.botao--red{
     background-color: var(--color-red);
-    border-radius: 0 0 0 100% ;
+    border-radius: 0 0 0 100%;
 }
+
 section.tabuleiro div.infos{
-    background-color: var(--color-green);
-    border-radius:  100% 0 0 0 ;
-}
-.infos{
+    background-color: #7EFED3;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 70px;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bolder;
 }
-.show{
+
+.show {
     height: 75vh;
     width: 75vw;
     background-color: var(--modal-color);
@@ -60,9 +131,10 @@ section.tabuleiro div.infos{
 }
 #popUp_title {
     text-align: center;
-    font-size: 30px;
-    color: var(--font-color-popUp-Title);
+    font-size: 50px;
+    color: var(--font-color-popUp-title);
 }
+
 #popUp_form {
     height: 200px;
     width: 200px;
@@ -71,25 +143,36 @@ section.tabuleiro div.infos{
     justify-content: space-evenly;
     align-items: center;
 }
+
 label {
     font-size: 20px;
-    color: var(--font-color-popUp)
+    color: var(--font-color-popUp);
 }
+
 #input_name {
     width: 200px;
     height: 30px;
     font-size: 15px;
 }
+
 #popUp_button{
-    width: 125px;
-    height: 30px;
+    width: 130px;
+    height: 40px;
     font-weight: bold;
-    background-color: cadetblue;
+    background-color: rgb(49, 138, 14);
     color: var(--font-color-popUp);
 }
+
 #popUp_button:hover{
-    background-color: var(--font-color-popUp-Title);
+    background-color: rgb(118, 150, 82);
+    cursor: pointer;
+    
 }
-.hide{
+
+.hide {
     display: none;
+}
+footer{
+    background-color: var(--modal-color);
+    
 }
