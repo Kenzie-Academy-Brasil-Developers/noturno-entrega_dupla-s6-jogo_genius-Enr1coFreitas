@@ -54,34 +54,17 @@ function criarModal(){
 }
 
 
-<<<<<<< HEAD
 criarModal();
-=======
-
-criarModal()
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
 
 const button = document.getElementById('popUp_button')
 button.addEventListener('click', (event) => {
     event.preventDefault()
 
     const popUp = document.getElementById('popUp');
-<<<<<<< HEAD
-    const input = document.getElementById('input_name').value;
-    if (input === ''){
-        console.log('input vazio')
-=======
     const input = document.getElementById('input_name').value
     if (input === '') {
         console.log('Input vazio')
-    } else {
-        popUp.classList.add('hide')
-        popUp.classList.remove('show')
-        criarTabuleiro(input)
-        adicionarEventosAosBotoes()
-        gerarNumeroRandomico(1,4)
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
-    }
+    } 
     else{
         popUp.classList.add("hide");
         popUp.classList.remove('show');
@@ -95,19 +78,14 @@ button.addEventListener('click', (event) => {
 
 //demo codes
 
-<<<<<<< HEAD
+
 function gerarNumeroRandom(min, max){
     if (placar > 0){
         let cor = Math.floor(Math.random() * (max - min)) + min;
         console.log(cor)
     }
     return cor;
-    
-=======
-function gerarNumeroRandomico(min, max){
-    cor = Math.floor(Math.random() * (max - min)) + min;
-    return cor
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
+
 }
 
 function animacao(botao, cor){
@@ -135,20 +113,14 @@ function adicionarEventosAosBotoes(){
 }
 
 
-<<<<<<< HEAD
-/*const caixaCores = document.getElementById('conteinerGlobal');
-=======
+
 const caixaCores = document.getElementById('conteinerGlobal');
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
+
 caixaCores.addEventListener('click',(event) =>{
     jogoUsuario(event)
 })
 jogoUsuario()
-<<<<<<< HEAD
-*/
 
-=======
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
 //se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
     
@@ -156,17 +128,10 @@ function jogoUsuario(event){
     clicks.push(idCor)
     for(let index = 0;index <cor.length;index++){
     if(clicks[index] === cor[index]){
-<<<<<<< HEAD
-        Window.alert('Você passou!')
-        placar++
-    }else{
-        Window.alert('Você perdeu!')
-=======
         Window.alert('voce passou')
         placar++
     }else{
         Window.alert('voce perdeu!')
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
         placar = 0
         cor = [];
 
@@ -242,8 +207,3 @@ function qualCor(element){
     }
 }
 */
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 58021489a528fd31f33d9da6693cb7e6fea04aa1
