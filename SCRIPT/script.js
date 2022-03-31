@@ -1,3 +1,9 @@
+
+let placar = 0; // placar geral e indice  dos numeros randomicos
+let cor = []; // array com os numeros aleatorios
+let clicks = []; // clicks do usuario
+
+
 function criarTabuleiro(input){
     const main = document.getElementById('main')
 
@@ -47,6 +53,9 @@ function criarModal() {
     popUp.appendChild(form)
 
 }
+
+
+
 criarModal()
 
 const button = document.getElementById('popUp_button')
@@ -62,6 +71,7 @@ button.addEventListener('click', (e) => {
         popUp.classList.remove('show')
         criarTabuleiro(input)
         adicionarEventosAosBotoes()
+        gerarNumeroRandomico(1,4)
     }
 
 })
@@ -69,7 +79,8 @@ button.addEventListener('click', (e) => {
 //demo codes
 
 function gerarNumeroRandomico(min, max){
-    return Math.floor(Math.random() * (max - min)) + min;
+    cor = Math.floor(Math.random() * (max - min)) + min;
+    return cor
 }
 
 function animacao(botao, cor){
@@ -96,10 +107,30 @@ function adicionarEventosAosBotoes(){
         })
     })
 }
-let placar = 0;
-let cor = [];
-let clicks = [];
 
+
+const caixaCores = document.getElementById('conteinerGlobal');
+caixaCores.addEventListener('click',(event) =>{
+    jogoUsuario(event)
+})
+jogoUsuario()
+//se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
+function jogoUsuario(event){
+    
+    let idCor = event.target.id
+    clicks.push(idCor)
+    for(let index = 0;index <cor.length;index++){
+    if(clicks[index] === cor[index]){
+        Window.alert('voce passou')
+        placar++
+    }else{
+        Window.alert('voce perdeu!')
+        placar = 0
+        cor = [];
+
+    }
+}
+}
 
 //Elementos com as cores
 
@@ -177,27 +208,4 @@ function qualCor(element){
 }
 */
 
-
-const caixaCores = document.getElementById('conteinerGlobal');
-caixaCores.addEventListener('click',(event) =>{
-    jogoUsuario(event)
-})
-
-//se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
-function jogoUsuario(event){
-    
-    let idCor = event.target.id
-    clicks.push(idCor)
-    for(let index = 0;index <cor.length;index++){
-    if(clicks[index] === cor[index]){
-        Window.alert('voce passou')
-        placar++
-    }else{
-        Window.alert('voce perdeu!')
-        placar = 0
-        cor = [];
-
-    }
-}
-}
 
