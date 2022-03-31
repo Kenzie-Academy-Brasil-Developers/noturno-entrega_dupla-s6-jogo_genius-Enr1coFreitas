@@ -66,13 +66,7 @@ button.addEventListener('click', (e) => {
 
 })
 
-/*
-Gerar numero randomico
-animar botao
-adicionar o click nos botões
-armazenar jogadas
-verificar perda
-*/
+//demo codes
 
 function gerarNumeroRandomico(min, max){
     return Math.floor(Math.random() * (max - min)) + min;
@@ -133,35 +127,6 @@ function novojogo(){
 //Gera aleatoriamente os valores de cor
 
 
-//demo codes 
-function gerarNumeroRandomico(min, max){
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function animacao(botao, cor){
-    botao.classList.add(`animacao${cor}`)
-    setTimeout(function(){
-        botao.classList.remove(`animacao${cor}`)
-    },1000)
-}
-
-function animarBotao(botao, cor){
-    setTimeout(function(){
-        animacao(botao, cor)
-    },1000)
-}
-
-function adicionarEventosAosBotoes(){
-    const botoes = [...document.getElementsByClassName('botao')]
-    console.log(botoes)
-    botoes.forEach(function(elem){
-        elem.addEventListener('click', function(e){
-            const botao = e.target
-            const corBotao = botao.classList[1].split('-')[2]
-            animarBotao(botao, corBotao)
-        })
-    })
-}
 
 
 /*
