@@ -89,6 +89,41 @@ function novojogo(){
    novojogo()
 //Gera aleatoriamente os valores de cor
 
+
+//demo codes 
+function numero aleatorio(min, max){
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+function animacao(botao, cor){
+    botao.classList.add(`animacao${cor}`)
+    setTimeout(() => {
+        botao.classList.remove(`animacao${cor}`)
+    },1000)
+}
+
+function animarBotao(botao, cor){
+    setTimeout(() =>{
+            animacao(botao, cor)
+    },2000)
+
+}
+
+function adicionarEventosAosBotoes(){
+    const botoes = [...document.getElementsByClassName('botao')]
+
+    botoes.forEach((element) =>{
+        element.addEventListener('click',function(e){
+            const botao = e.target
+            const corBotao = botao.classList[1].split('-')
+        })
+    })
+}
+
+
+
+
+
+
 function corAleatoria(placar){
     
     if(placar > 0){
