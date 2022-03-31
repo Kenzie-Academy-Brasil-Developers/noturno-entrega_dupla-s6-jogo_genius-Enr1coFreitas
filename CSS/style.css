@@ -90,3 +90,6 @@ label {
 #popUp_button:hover{
     background-color: var(--font-color-popUp-Title);
 }
+.hide{
+    display: none;
+}
