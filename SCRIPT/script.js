@@ -2,6 +2,10 @@
 let placar = 0; // placar geral e indice  dos numeros randomicos
 let cor = []; // array com os numeros aleatorios
 let clicks = []; // clicks do usuario
+const num1 = document.getElementById('1'); //azul
+const num2 = document.getElementById('2'); //verde
+const num3 = document.getElementById('3'); // amarelo
+const num4 = document.getElementById('4'); //red
 
 
 function criarTabuleiro(input){
@@ -11,101 +15,113 @@ function criarTabuleiro(input){
     container.classList.add('tabuleiro')
 
     container.innerHTML = `
-        <div class="botao botao--green"></div>
-        <div class="botao botao--yellow"></div>
-        <div class="botao botao--red"></div>
-        <div class="botao botao--blue"></div>
+        <div class="botao botao--green id = "3"></div>
+        <div class="botao botao--yellow id = "2"></div>
+        <div class="botao botao--red id = "4"></div>
+        <div class="botao botao--blue id = "1"></div>
         <div class="infos">${input}</div>
-        `
+    `
 
     main.appendChild(container)
 }
 
-function criarModal(){
-    const main = document.querySelector("main");
+function criarModal() {
+    const main = document.querySelector('main')
     const popUp = document.createElement('div');
-    popUp.setAttribute('id', 'popUp');
-    popUp.classList.add('show');
-    main.appendChild(popUp);
+    popUp.setAttribute('id', 'popUp')
+    popUp.classList.add('show')
+    main.appendChild(popUp)
 
-    const popUpTitle = document.createElement('h2');
-    popUpTitle.setAttribute('id', 'popUp_title');
-    popUpTitle.innerText = 'JOGO GENIUS';
-    popUp.appendChild(popUpTitle);
+    const popUpTitulo = document.createElement('h2')
+    popUpTitulo.setAttribute('id', 'popUp_title')
+    popUpTitulo.innerText = 'JOGO GENIUS'
+    popUp.appendChild(popUpTitulo)
 
-    const form = document.createElement('form');
-    form.setAttribute('id', 'popUp_form');
+    const form = document.createElement('form')
+    form.setAttribute('id', 'popUp_form')
 
-    const input = document.createElement('input');
-    input.setAttribute('id', 'input_name');
+    const input = document.createElement('input')
+    input.id = 'input_name'
 
-    const label = document.createElement('label');
+    const label = document.createElement('label')
     label.htmlFor = 'input_name';
-    label.innerText = 'Insira seu nome aqui';
+    label.innerText = 'Insira seu nome aqui:';
 
-    const button = document.createElement('button');
-    button.setAttribute('id', 'popUp_button');
+    const button = document.createElement('button')
+    button.setAttribute('id', 'popUp_button')
     button.innerText = 'INICIAR O JOGO';
 
-    form.appendChild(label);
-    form.appendChild(input);
-    form.appendChild(button);
-    popUp.appendChild(form);
+    form.appendChild(label)
+    form.appendChild(input)
+    form.appendChild(button)
+    popUp.appendChild(form)
+
 }
 
 
-criarModal();
+
+criarModal()
 
 const button = document.getElementById('popUp_button')
 button.addEventListener('click', (event) => {
     event.preventDefault()
-
+    
     const popUp = document.getElementById('popUp');
     const input = document.getElementById('input_name').value
     if (input === '') {
         console.log('Input vazio')
-    } 
-    else{
-        popUp.classList.add("hide");
-        popUp.classList.remove('show');
-        placar++
-        criarTabuleiro(input);
-        gerarNumeroRandom(1,4);
-        adicionarEventosAosBotoes();
-        jogoUsuario();
+    } else {
+        popUp.classList.add('hide')
+        popUp.classList.remove('show')
+        criarTabuleiro(input)
+        adicionarEventosAosBotoes()
+        gerarNumeroRandomico(1,4)
     }
-});
+
+})
 
 //demo codes
 
-
-function gerarNumeroRandom(min, max){
-    if (placar > 0){
-        let cor = Math.floor(Math.random() * (max - min)) + min;
-        console.log(cor)
+function gerarNumeroRandomico(min, max){
+    if (placar < 0){
+        let numero = Math.floor(Math.random() * (max - min)) + min;
+        numero.push(cor)
+        if (numero === 1){
+            cor = 'blue'
+        }
+        if (numero === 2){
+            cor = 'yellow'
+        }
+        if (numero === 3){
+            cor = 'green'
+        }
+        if (numero === 4){
+            cor = 'red'
+        }
+    console.log(numero)
     }
-    return cor;
-
 }
 
 function animacao(botao, cor){
-    botao.classList.add(`animacao${cor}`);
+    
+    botao.classList.add(`animacao${cor}`)
     setTimeout(function(){
         botao.classList.remove(`animacao${cor}`)
-    }, 1000)
+    },1000)
 }
 
 function animarBotao(botao, cor){
     setTimeout(function(){
         animacao(botao, cor)
-    }, 1000)
+    },1000)
 }
 
 function adicionarEventosAosBotoes(){
-    const botoes = [...document.getElementsByClassName('botao')];
-    botoes.forEach(function(element){
-        element.addEventListener('click', function(event){
-            const botao = event.target;
+    const botoes = [...document.getElementsByClassName('botao')]
+    console.log(botoes)
+    botoes.forEach(function(elem){
+        elem.addEventListener('click', function(e){
+            const botao = e.target
             const corBotao = botao.classList[1].split('-')[2]
             animarBotao(botao, corBotao)
         })
@@ -113,14 +129,11 @@ function adicionarEventosAosBotoes(){
 }
 
 
-
 const caixaCores = document.getElementById('conteinerGlobal');
-
 caixaCores.addEventListener('click',(event) =>{
     jogoUsuario(event)
 })
 jogoUsuario()
-
 //se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
     
@@ -154,6 +167,8 @@ const verde = document.getElementById('3');
 const vermelho = document.getElementById('4');
 //botao que inicia o codigo
 const botaoInicio = document.getElementById('novoJogo')
+
+
 function novojogo(){
     alert('1 rodada' + ' ' + 'seu placar é' + ' ' + placar);
     placar++
@@ -166,6 +181,8 @@ function novojogo(){
 
 
 /*
+
+
 function corAleatoria(placar){
     
     if(placar > 0){
@@ -179,7 +196,9 @@ function corAleatoria(placar){
         cor.forEach(element => {qualCor(element)});
 }
 }
+
 //decide qual cor é cada const e anima
+
 function qualCor(element){
     if(element === 1) {
         azul.classList.add('opacidade')
@@ -195,6 +214,7 @@ function qualCor(element){
         return vermelho;
     } 
 }
+
  
 //funcao que le o array cor
  function genius(cor,placar){
@@ -207,3 +227,5 @@ function qualCor(element){
     }
 }
 */
+
+
