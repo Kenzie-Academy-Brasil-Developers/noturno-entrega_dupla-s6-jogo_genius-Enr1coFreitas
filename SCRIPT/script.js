@@ -1,11 +1,8 @@
 
-let placar = 0; // placar geral e indice  dos numeros randomicos
+let placar = 1; // placar geral e indice  dos numeros randomicos
 let cor = []; // array com os numeros aleatorios
 let clicks = []; // clicks do usuario
-const num1 = document.getElementById('1'); //azul
-const num2 = document.getElementById('2'); //verde
-const num3 = document.getElementById('3'); // amarelo
-const num4 = document.getElementById('4'); //red
+
 
 
 function criarTabuleiro(input){
@@ -15,10 +12,10 @@ function criarTabuleiro(input){
     container.classList.add('tabuleiro')
 
     container.innerHTML = `
-        <div class="botao botao--green id = "3"></div>
-        <div class="botao botao--yellow id = "2"></div>
-        <div class="botao botao--red id = "4"></div>
-        <div class="botao botao--blue id = "1"></div>
+        <div class="botao botao--green" id = "3"></div>
+        <div class="botao botao--yellow" id = "2"></div>
+        <div class="botao botao--red" id = "4"></div>
+        <div class="botao botao--blue" id = "1"></div>
         <div class="infos">${input}</div>
     `
 
@@ -80,25 +77,26 @@ button.addEventListener('click', (event) => {
 
 })
 
-//demo codes
+// LOGICA
+//GERA UM NUMERO RANDOMICO ARMAZENADO NO ARRAY COR [1-2-3-4] //
+// PROGRAMA ANIMAÇÃO //
+// CADA COR É ATRIBUIDA A UM ID 1AZUL,2VERDE,3AMARELO,4VERMELHO//
+//FUNCAO LE O ARRAY COR E EXIBE ANIMAÇÃO COM BASE NELE //
+// ARRAY CLICKS ARMAZENA OS CLICKS DO USUARIO <<
+// SE CLICKS[INDEX] === COR [INDEX] VOCE PASSOU. <<
 
-function gerarNumeroRandomico(min, max){
-    if (placar < 0){
+
+//CODIGOS DA DEMO
+
+function gerarNumeroRandomico(min = 1, max = 4){
+    
+  
+    if (placar > 0){
+        
         let numero = Math.floor(Math.random() * (max - min)) + min;
-        numero.push(cor)
-        if (numero === 1){
-            cor = 'blue'
-        }
-        if (numero === 2){
-            cor = 'yellow'
-        }
-        if (numero === 3){
-            cor = 'green'
-        }
-        if (numero === 4){
-            cor = 'red'
-        }
-    console.log(numero)
+        cor.push(numero)
+        animarBotao(cor)
+    
     }
 }
 
@@ -110,13 +108,48 @@ function animacao(botao, cor){
     },1000)
 }
 
-function animarBotao(botao, cor){
-    setTimeout(function(){
-        animacao(botao, cor)
-    },1000)
+function animarBotao(cor){
+    const num1 = document.getElementById('1'); //azul
+    const num2 = document.getElementById('3'); //verde
+    const num3 = document.getElementById('2'); // amarelo
+    const num4 = document.getElementById('4'); //red
+    let corSelect = "";
+    let buttonSelect = "";
+    for(let i = 0; i < cor.length;i++){
+
+        if(cor[i] === 1){
+            corSelect = 'blue'
+            buttonSelect = num1
+        }
+        else if(cor[i] === 3){
+            corSelect = 'green'
+            buttonSelect = num2
+        }
+        else if(cor[i] === 2){
+            corSelect = 'yellow'
+            buttonSelect = num3
+        }
+        else if(cor[i] === 4){
+            corSelect = 'red'
+            buttonSelect = num4
+        }
+        setTimeout(function(){
+            animacao(buttonSelect, corSelect)
+        },1000)
+    }
+
+}
+
+function animarCor(cor){
+
 }
 
 function adicionarEventosAosBotoes(){
+    const caixaCores = document.querySelector('.tabuleiro')
+    caixaCores.addEventListener('click',(event) =>{
+    jogoUsuario(event)
+})
+
     const botoes = [...document.getElementsByClassName('botao')]
     console.log(botoes)
     botoes.forEach(function(elem){
@@ -129,29 +162,35 @@ function adicionarEventosAosBotoes(){
 }
 
 
-const caixaCores = document.getElementById('conteinerGlobal');
-caixaCores.addEventListener('click',(event) =>{
-    jogoUsuario(event)
-})
-jogoUsuario()
+
 //se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
     
     let idCor = event.target.id
-    clicks.push(idCor)
+    clicks.push(Number(idCor))
+    console.log(clicks,cor)
     for(let index = 0;index <cor.length;index++){
-    if(clicks[index] === cor[index]){
-        Window.alert('voce passou')
-        placar++
-    }else{
-        Window.alert('voce perdeu!')
+    if(index === cor.length -1){
+        //window.alert('voce passou')
+        gerarNumeroRandomico()
+        console.log(cor)
+        clicks = [];
+        break;
+    }
+
+
+    else if(clicks[index] !== cor[index]){
+        window.alert('voce perdeu!')
         placar = 0
         cor = [];
-
+        clicks = [];    
+        break;
     }
+    
+    
+    
 }
 }
-
 //Elementos com as cores
 
 //
@@ -227,5 +266,4 @@ function qualCor(element){
     }
 }
 */
-
 
