@@ -78,12 +78,15 @@ button.addEventListener('click', (event) => {
 })
 
 // LOGICA
-//GERA UM NUMERO RANDOMICO ARMAZENADO NO ARRAY COR [1-2-3-4] //
+//GERA UM NUMERO RANDOMICO ARMAZENADO NO ARRAY COR [1-2-3-4] // click [1,2,3,4]
 // PROGRAMA ANIMAÇÃO //
 // CADA COR É ATRIBUIDA A UM ID 1AZUL,2VERDE,3AMARELO,4VERMELHO//
 //FUNCAO LE O ARRAY COR E EXIBE ANIMAÇÃO COM BASE NELE //
 // ARRAY CLICKS ARMAZENA OS CLICKS DO USUARIO <<
 // SE CLICKS[INDEX] === COR [INDEX] VOCE PASSOU. <<
+
+//tempo de animação nao funcionando
+//evento de clique estranho
 
 
 //CODIGOS DA DEMO
@@ -116,7 +119,7 @@ function animarBotao(cor){
     let corSelect = "";
     let buttonSelect = "";
     for(let i = 0; i < cor.length;i++){
-
+        console.log(i)
         if(cor[i] === 1){
             corSelect = 'blue'
             buttonSelect = num1
@@ -133,9 +136,9 @@ function animarBotao(cor){
             corSelect = 'red'
             buttonSelect = num4
         }
-        setTimeout(function(){
+        setTimeout(() => {
             animacao(buttonSelect, corSelect)
-        },1000)
+        },2000)
     }
 
 }
@@ -165,27 +168,31 @@ function adicionarEventosAosBotoes(){
 
 //se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
-    
+    for(let index = 0;index <cor.length;index++){
     let idCor = event.target.id
     clicks.push(Number(idCor))
     console.log(clicks,cor)
-    for(let index = 0;index <cor.length;index++){
-    if(index === cor.length -1){
+    console.log("cor:", cor)
+    console.log("clique:", clicks)
+        if(clicks[index] !== cor[index]){
+            window.alert('voce perdeu!')
+            placar = 0
+            cor = [];
+            clicks = [];    
+            break;
+        }
+
+    else if(clicks[index] === cor[index]){
         //window.alert('voce passou')
-        gerarNumeroRandomico()
-        console.log(cor)
         clicks = [];
+        placar++
+        gerarNumeroRandomico()
+        
+        
         break;
     }
+   
 
-
-    else if(clicks[index] !== cor[index]){
-        window.alert('voce perdeu!')
-        placar = 0
-        cor = [];
-        clicks = [];    
-        break;
-    }
     
     
     
