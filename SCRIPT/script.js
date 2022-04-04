@@ -1,5 +1,5 @@
 
-let placar = 1; // placar geral e indice  dos numeros randomicos
+let placar = 0; // placar geral e indice  dos numeros randomicos
 let cor = []; // array com os numeros aleatorios
 let clicks = []; // clicks do usuario
 
@@ -68,6 +68,7 @@ button.addEventListener('click', (event) => {
     if (input === '') {
         console.log('Input vazio')
     } else {
+       
         popUp.classList.add('hide')
         popUp.classList.remove('show')
         criarTabuleiro(input)
@@ -92,15 +93,12 @@ button.addEventListener('click', (event) => {
 //CODIGOS DA DEMO
 
 function gerarNumeroRandomico(min = 1, max = 4){
-    
-  
-    if (placar > 0){
-        
+
         let numero = Math.floor(Math.random() * (max - min)) + min;
         cor.push(numero)
-        animarBotao(cor)
+        animarBotao(cor);
     
-    }
+    
 }
 
 function animacao(botao, cor){
@@ -168,28 +166,28 @@ function adicionarEventosAosBotoes(){
 
 //se o clique do usuario for no elemento com o id numerico equivalente ao array cor então o jogo prossegue
 function jogoUsuario(event){
-    for(let index = 0;index <cor.length;index++){
     let idCor = event.target.id
     clicks.push(Number(idCor))
     console.log(clicks,cor)
     console.log("cor:", cor)
     console.log("clique:", clicks)
-        if(clicks[index] !== cor[index]){
+    
+    if(clicks[placar] !== cor[placar]){
             window.alert('voce perdeu!')
             placar = 0
             cor = [];
-            clicks = [];    
-            break;
+            clicks = [];         
+           
         }
 
-    else if(clicks[index] === cor[index]){
+    if(clicks[placar.length] === cor[placar]){
         //window.alert('voce passou')
-        clicks = [];
+        
         placar++
-        gerarNumeroRandomico()
-        
-        
-        break;
+        if (placar > 0){
+            gerarNumeroRandomico(1,4)
+            console.log('voce acertou');
+        }
     }
    
 
@@ -197,7 +195,7 @@ function jogoUsuario(event){
     
     
 }
-}
+
 //Elementos com as cores
 
 //
