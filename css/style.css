@@ -119,6 +119,11 @@ section.tabuleiro div.infos{
     align-items: center;
     font-weight: bolder;
 }
+.button_restart{
+    background-color: white;
+    font-size: 18px;
+    color: black;
+}
 
 .show {
     height: 75vh;
