@@ -18,10 +18,9 @@ function criarTabuleiro(input){
         <div class="botao botao--blue" id = "1"></div>
         <div class="infos">${input}</div>
     `
-
     main.appendChild(container)
 }
-
+const label = document.createElement('label')
 function criarModal() {
     const main = document.querySelector('main')
     const popUp = document.createElement('div');
@@ -40,7 +39,7 @@ function criarModal() {
     const input = document.createElement('input')
     input.id = 'input_name'
 
-    const label = document.createElement('label')
+    
     label.htmlFor = 'input_name';
     label.innerText = 'Insira seu nome aqui:';
 
@@ -58,6 +57,8 @@ function criarModal() {
 
 
 criarModal()
+
+
 
 const button = document.getElementById('popUp_button')
 button.addEventListener('click', (event) => {
@@ -94,9 +95,9 @@ button.addEventListener('click', (event) => {
 
 function gerarNumeroRandomico(min = 1, max = 4){
 
-        let numero = Math.floor(Math.random() * (max - min)) + min;
-        cor.push(numero)
-        animarBotao(cor);
+    let numero = Math.floor(Math.random() * (max - min)) + min;
+    cor.push(numero)
+    animarBotao(cor);
     
     
 }
@@ -110,14 +111,60 @@ function animacao(botao, cor){
 }
 
 function animarBotao(cor){
+    let corSelect = "";
+    let buttonSelect = "";
+    for(let i = 0; i < cor.length;i++){
+        let corPisca = setTimeout(() => {
+            corSelecionada(cor[i]) 
+            clicks = []
+            
+        },300)
+
+    }  
+}
+
+
+function corSelecionada(corSelecionada){
     const num1 = document.getElementById('1'); //azul
     const num2 = document.getElementById('3'); //verde
     const num3 = document.getElementById('2'); // amarelo
     const num4 = document.getElementById('4'); //red
-    let corSelect = "";
-    let buttonSelect = "";
-    for(let i = 0; i < cor.length;i++){
-        console.log(i)
+    console.log(corSelecionada); 
+    switch(corSelecionada){
+        case 1: let azul = setInterval(()=> {
+                num1.classList.add(`animacaoblue`)
+                setTimeout(function(){
+                    num1.classList.remove(`animacaoblue`);
+                    clearInterval(azul);
+                },500)
+            }, 1100)
+            break;
+            case 2: let amarelo = setInterval(() => {
+                num3.classList.add(`animacaoyellow`)
+                setTimeout(function(){
+                    num3.classList.remove(`animacaoyellow`);
+                    clearInterval(amarelo);
+                },500)
+            }, 1300)
+            break;
+            case 3: let verde = setInterval(() => {
+                num2.classList.add(`animacaogreen`)
+                    setTimeout(function(){
+                        num2.classList.remove(`animacaogreen`);
+                        clearInterval(verde);
+                    },500)
+            }, 1500)
+                break;
+            case 4: let vermelho = setInterval(() => {
+            num4.classList.add(`animacaored`)
+                setTimeout(function(){
+                    num4.classList.remove(`animacaored`);
+                    clearInterval(vermelho);
+                },500)
+        }, 1700)
+            break;
+    }
+    /*console.log(i)
         if(cor[i] === 1){
             corSelect = 'blue'
             buttonSelect = num1
@@ -133,16 +180,7 @@ function animarBotao(cor){
         else if(cor[i] === 4){
             corSelect = 'red'
             buttonSelect = num4
-        }
-        setTimeout(() => {
-            animacao(buttonSelect, corSelect)
-        },2000)
-    }
-
-}
-
-function animarCor(cor){
-
+        }*/
 }
 
 function adicionarEventosAosBotoes(){
@@ -168,32 +206,41 @@ function adicionarEventosAosBotoes(){
 function jogoUsuario(event){
     let idCor = event.target.id
     clicks.push(Number(idCor))
-    console.log(clicks,cor)
     console.log("cor:", cor)
     console.log("clique:", clicks)
-    
-    if(clicks[placar] !== cor[placar]){
-            window.alert('voce perdeu!')
+    for (let i = 0; i < cor.length; i++){
+        if(clicks[i] === cor[i]){
+            if(i === cor.length - 1){
+                //window.alert('voce passou')
+                gerarNumeroRandomico(1,4);
+                //animarBotao()
+                //window.alert('Você acertou');
+                //nameInGame.innerText = "Você acertou!"
+            }
+        }
+        if(clicks[placar] !== cor[placar]){
+            alert('Você perdeu!')
             placar = 0
             cor = [];
             clicks = [];         
            
         }
-
-    if(clicks[placar.length] === cor[placar]){
-        //window.alert('voce passou')
-        
-        placar++
-        if (placar > 0){
-            gerarNumeroRandomico(1,4)
-            console.log('voce acertou');
-        }
     }
-   
+    /*if(clicks[placar] === cor[placar]){
+        //window.alert('voce passou')
+        gerarNumeroRandomico(1,4)
+        console.log('voce acertou');
+        
+    }
+    else if(clicks[placar] !== cor[placar]){
+            window.alert('voce perdeu!')
+            placar = 0
+            cor = [];
+            clicks = [];         
+           
+    }
 
-    
-    
-    
+   */
 }
 
 //Elementos com as cores
@@ -271,4 +318,5 @@ function qualCor(element){
     }
 }
 */
+
 
