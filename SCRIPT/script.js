@@ -67,7 +67,7 @@ button.addEventListener('click', (event) => {
     const popUp = document.getElementById('popUp');
     const input = document.getElementById('input_name').value
     if (input === '') {
-        console.log('Input vazio')
+        //console.log('Input vazio')
     } else {
        
         popUp.classList.add('hide')
@@ -111,25 +111,25 @@ function animacao(botao, cor){
 }
 
 function animarBotao(cor){
-    let corSelect = "";
-    let buttonSelect = "";
+    let timer = 0;
     for(let i = 0; i < cor.length;i++){
-        let corPisca = setTimeout(() => {
-            corSelecionada(cor[i]) 
-            clicks = []
-            
-        },300)
+        setTimeout(() => {
+            corSelecionada(cor[i], timer);
+            clicks = [];
+            console.log(cor[i]);
+            timer += 500;
+        },500)
 
     }  
 }
 
 
-function corSelecionada(corSelecionada){
+function corSelecionada(corSelecionada, tempo){
     const num1 = document.getElementById('1'); //azul
     const num2 = document.getElementById('3'); //verde
     const num3 = document.getElementById('2'); // amarelo
     const num4 = document.getElementById('4'); //red
-    console.log(corSelecionada); 
+    //console.log(corSelecionada); 
     switch(corSelecionada){
         case 1: let azul = setInterval(()=> {
                 num1.classList.add(`animacaoblue`)
@@ -137,7 +137,7 @@ function corSelecionada(corSelecionada){
                     num1.classList.remove(`animacaoblue`);
                     clearInterval(azul);
                 },500)
-            }, 1100)
+            }, tempo)
             break;
             case 2: let amarelo = setInterval(() => {
                 num3.classList.add(`animacaoyellow`)
@@ -145,7 +145,7 @@ function corSelecionada(corSelecionada){
                     num3.classList.remove(`animacaoyellow`);
                     clearInterval(amarelo);
                 },500)
-            }, 1300)
+            }, tempo)
             break;
             case 3: let verde = setInterval(() => {
                 num2.classList.add(`animacaogreen`)
@@ -153,7 +153,7 @@ function corSelecionada(corSelecionada){
                         num2.classList.remove(`animacaogreen`);
                         clearInterval(verde);
                     },500)
-            }, 1500)
+            }, tempo)
                 break;
             case 4: let vermelho = setInterval(() => {
             num4.classList.add(`animacaored`)
@@ -161,7 +161,7 @@ function corSelecionada(corSelecionada){
                     num4.classList.remove(`animacaored`);
                     clearInterval(vermelho);
                 },500)
-        }, 1700)
+        }, tempo)
             break;
     }
     /*console.log(i)
@@ -190,7 +190,7 @@ function adicionarEventosAosBotoes(){
 })
 
     const botoes = [...document.getElementsByClassName('botao')]
-    console.log(botoes)
+    //console.log(botoes)
     botoes.forEach(function(elem){
         elem.addEventListener('click', function(e){
             const botao = e.target
@@ -206,8 +206,8 @@ function adicionarEventosAosBotoes(){
 function jogoUsuario(event){
     let idCor = event.target.id
     clicks.push(Number(idCor))
-    console.log("cor:", cor)
-    console.log("clique:", clicks)
+    //console.log("cor:", cor)
+    //console.log("clique:", clicks)
     for (let i = 0; i < cor.length; i++){
         if(clicks[i] === cor[i]){
             if(i === cor.length - 1){
